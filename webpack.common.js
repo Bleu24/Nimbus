@@ -1,6 +1,6 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { fileURLToPath } from 'url';
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,23 +15,23 @@ export default {
     module: {
         rules: [
             {
-                test: "/css$/i",
+                test: /\.css$/i,
                 use: ["style-loader", "css-loader"]
             },
             {
-                test: "/(png|svg|gif|jpeg|jpg)$/i",
-                use: "asset/resource"
+                test: /\.(png|svg|gif|jpeg|jpg)$/i,
+                type: "asset/resource"
             },
             {
-                test: "/(woff2|woff|otf|ttf|eot)$/i",
-                use: "asset/resource"
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: "asset/resource"
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/template.html",
-            title: "webpack-template" // change this, this chanes the title docs
+            title: "Nimbus" // change this, this chanes the title docs
         })
     ]
 };
