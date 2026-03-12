@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Abel';
+    src: url('./assets/fonts/Abel-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BellotaText';
+    src: url('./assets/fonts/BellotaText-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root {
+    /* fonts */
+    --display-font: 'Abel';
+    --primary-font: 'BellotaText';
+
+    /* colors */
+    --bg-color: #000000;
+    --secondary-bg-color: #0f0e10;
+
+    /* text colors */
+    --primary-text-color: #f3f5f3;
+    --secondary-text-color: #444448;
+    --border-color: #27272C;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    font-family: var(--display-font);
+    height: 100vh;
+}
