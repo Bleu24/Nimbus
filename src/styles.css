@@ -17,12 +17,14 @@
 
 :root {
     /* fonts */
-    --display-font: 'Abel';
-    --primary-font: 'BellotaText';
+    --display-font: 'BellotaText';
+    --primary-font: 'Abel';
 
     /* colors */
     --bg-color: #000000;
     --secondary-bg-color: #0f0e10;
+    --tertiary-bg-color: #0D0B0C;
+    --fg-color: #fff;
 
     /* text colors */
     --primary-text-color: #f3f5f3;
@@ -35,6 +37,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: var(--bg-color);
-    font-family: var(--display-font);
+    font-family: var(--primary-font);
     height: 100vh;
 }
