@@ -1,28 +1,16 @@
-import { WeatherService } from "../services/WeatherService.js";
+import { SearchBar } from "./components/SearchBar.js";
 
 export const Home = (function () {
     const div = document.createElement("div");
-    const p = document.createElement("p");
-    const search = document.createElement("input");
-    const button = document.createElement("button");
+    const appTitle = document.createElement("h1");
 
     div.className = "app";
 
-    search.type = "search";
-    search.placeholder = "Manila";
+    appTitle.textContent = "NIMBUS";
+    appTitle.className = "app__title";
 
-    button.addEventListener("click", (e) => {
-
-        const query = search.value;
-
-        WeatherService.weatherData(query)
-            .then(data => {
-                p.textContent = data.currentConditions.temp;
-                console.log(data);
-            });
-
-    });
-
+    div.appendChild(appTitle);
+    div.appendChild(SearchBar);
 
     return div;
 })();
