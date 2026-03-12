@@ -1,7 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { fileURLToPath } from 'url';
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default {
     entry: "./src/main.js",
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -11,15 +15,15 @@ module.exports = {
     module: {
         rules: [
             {
-                test: "/\.css$/i",
+                test: "/css$/i",
                 use: ["style-loader", "css-loader"]
-            }, 
+            },
             {
-                test: "/\.(png|svg|gif|jpeg|jpg)$/i",
+                test: "/(png|svg|gif|jpeg|jpg)$/i",
                 use: "asset/resource"
             },
             {
-                test: "/\.(woff2|woff|otf|ttf|eot)$/i",
+                test: "/(woff2|woff|otf|ttf|eot)$/i",
                 use: "asset/resource"
             }
         ]
@@ -30,4 +34,4 @@ module.exports = {
             title: "webpack-template" // change this, this chanes the title docs
         })
     ]
-}
+};
