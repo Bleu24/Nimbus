@@ -1,5 +1,14 @@
+import { Observer } from "../../classes/Observer.js";
 import { Search, createElement } from "lucide";
 import { WeatherService } from "../../services/WeatherService.js";
+
+const sanitizeQuery = (query) => {
+    const coords = query.split(", ");
+    const [latitude, longitude] = coords;
+
+    if (!(isNaN(latitude) || isNaN(longitude))) return WeatherService.reverse(latitude, longitude);
+    else return query;
+};
 
 export const SearchBar = (function () {
 
@@ -15,16 +24,24 @@ export const SearchBar = (function () {
 
     search.type = "search";
     search.id = "searchBox";
+    search.placeholder = "latitude, longitude or city name";
 
     button.addEventListener("click", (e) => {
 
-        const query = search.value;
+        let query = search.value;
 
-        WeatherService.weatherData(query)
-            .then(data => {
-                console.log(data);
-            });
+        query = sanitizeQuery(query);
 
+        if (query instanceof Promise) {
+            query
+                .then(location => WeatherService.weatherData(`${location.city}, ${location.countryName}, ${location?.postcode}`))
+                .then(data => Observer.emit("search:fetch", data));
+        } else {
+            WeatherService.weatherData(query)
+                .then(data => {
+                    Observer.emit("search:fetch", data);
+                });
+        }
     });
 
     button.append(searchIcon);
