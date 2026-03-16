@@ -24,12 +24,17 @@
     --bg-color: #000000;
     --secondary-bg-color: #0f0e10;
     --tertiary-bg-color: #0D0B0C;
+    --shadow-grey: #27272C;
     --fg-color: #fff;
 
     /* text colors */
     --primary-text-color: #f3f5f3;
     --secondary-text-color: #444448;
     --border-color: #27272C;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -39,4 +44,12 @@ body {
     background-color: var(--bg-color);
     font-family: var(--primary-font);
     height: 100vh;
+    color: var(--primary-text-color);
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
 }
