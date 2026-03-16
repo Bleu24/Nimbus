@@ -1,22 +1,22 @@
 export class VisualCrossing {
 
 
-    static #API_KEY = "D759WJHZQVRR57EJTNAWV2WG5";
+    static #API_KEY = process.env.VISUAL_CROSSING_API_KEY;
 
     constructor() { }
 
-    async data(loc) {
+    async getData(loc) {
         try {
-            const res = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=us&key=${VisualCrossing.#API_KEY}&contentType=json`);
+            const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=uk&key=${VisualCrossing.#API_KEY}&contentType=json`);
 
-            if (!res.ok) throw new Error("Error: " + res.status);
+            if (!response.ok) throw new Error("Error: " + response.status);
 
-            const data = await res.json();
+            const data = await response.json();
 
             return data;
 
-        } catch (err) {
-            console.error(err);
+        } catch (error) {
+            console.error("VisualCrossing API: " + error);
         }
     }
 }
