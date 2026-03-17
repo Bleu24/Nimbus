@@ -25,24 +25,26 @@ export const Home = (function () {
     div.appendChild(SearchBar);
 
     Observer.subscribe("search:fetch", (data) => {
-        const precipCard = createPrecipCard({ label: "Precipitation", data: data.currentConditions.precip, icon: createElement(CloudRain) });
-        const uvCard = createUvCard({ label: "UV Index", data: data.currentConditions.uvindex, icon: createElement(Sun) });
-        const visibilityCard = createVisibilityCard({ label: "Visibility", data: data.currentConditions.visibility, icon: createElement(Eye) });
-        const windCard = createWindCard({ label: "Winds", data: data.currentConditions.windspeed, icon: createElement(Wind) });
-
-
 
         // Assumes div has already children. Search is for updating the ui
         Array.from(div.children)
-            .filter(child => child.className
-                .includes("card"))
+            .filter(child => child.className.includes("card"))
             .forEach(child => child.remove());
 
-        Array.from(div.children)
-            .filter(child => child.className
-                .includes("day"))
+        Array.from(days.children)
+            .filter(child => child.className.includes("day"))
             .forEach(child => child.remove());
 
+        const precipCard = createPrecipCard({ label: "Precipitation", data: data.currentConditions.precip, icon: createElement(CloudRain), unit: "mm" });
+        const uvCard = createUvCard({ label: "UV Index", data: data.currentConditions.uvindex, icon: createElement(Sun) });
+        const visibilityCard = createVisibilityCard({ label: "Visibility", data: data.currentConditions.visibility, icon: createElement(Eye), unit: "miles" });
+        const windCard = createWindCard({ label: "Winds", data: data.currentConditions.windspeed, icon: createElement(Wind), unit: "mph" });
+        const dataDates = data.days.slice(0, 7);
+
+        for (const data of dataDates) {
+            const card = createCard("per-day", data);
+            days.appendChild(card);
+        }
 
         heroCard.render(data);
         div.append(
@@ -56,10 +58,10 @@ export const Home = (function () {
     });
 
     Observer.subscribe("app:init", (data) => {
-        const precipCard = createPrecipCard({ label: "Precipitation", data: data.currentConditions.precip, icon: createElement(CloudRain) });
+        const precipCard = createPrecipCard({ label: "Precipitation", data: data.currentConditions.precip, icon: createElement(CloudRain), unit: "mm" });
         const uvCard = createUvCard({ label: "UV Index", data: data.currentConditions.uvindex, icon: createElement(Sun) });
-        const visibilityCard = createVisibilityCard({ label: "Visibility", data: data.currentConditions.visibility, icon: createElement(Eye) });
-        const windCard = createWindCard({ label: "Winds", data: data.currentConditions.windspeed, icon: createElement(Wind) });
+        const visibilityCard = createVisibilityCard({ label: "Visibility", data: data.currentConditions.visibility, icon: createElement(Eye), unit: "mi" });
+        const windCard = createWindCard({ label: "Winds", data: data.currentConditions.windspeed, icon: createElement(Wind), unit: "mph" });
 
         const dataDates = data.days.slice(0, 7);
 
