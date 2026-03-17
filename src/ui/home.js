@@ -36,7 +36,7 @@ export const Home = (function () {
 
         const precipCard = createPrecipCard({ label: "Precipitation", data: data.currentConditions.precip, icon: createElement(CloudRain), unit: "mm" });
         const uvCard = createUvCard({ label: "UV Index", data: data.currentConditions.uvindex, icon: createElement(Sun) });
-        const visibilityCard = createVisibilityCard({ label: "Visibility", data: data.currentConditions.visibility, icon: createElement(Eye), unit: "miles" });
+        const visibilityCard = createVisibilityCard({ label: "Visibility", data: data.currentConditions.visibility, icon: createElement(Eye), unit: "mi" });
         const windCard = createWindCard({ label: "Winds", data: data.currentConditions.windspeed, icon: createElement(Wind), unit: "mph" });
         const dataDates = data.days.slice(0, 7);
 
