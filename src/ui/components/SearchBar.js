@@ -26,7 +26,7 @@ export const SearchBar = (function () {
     search.id = "searchBox";
     search.placeholder = "latitude, longitude or city name";
 
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", () => {
 
         let query = search.value;
 
