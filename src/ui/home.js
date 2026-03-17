@@ -1,5 +1,4 @@
 import { Observer } from "../classes/Observer.js";
-import { WeatherService } from "../services/WeatherService.js";
 import { SearchBar } from "./components/SearchBar.js";
 import { createCard, createHeroCard } from "./components/createCard.js";
 import { CloudRain, createElement, Sun, Eye, Wind } from "lucide";
