@@ -60,14 +60,14 @@ const days = [
 export function createCard(mode = "", data = {}) {
 
     if (mode === "trivial") {
-        return ({ label, icon, data }) => {
+        return ({ label, unit, icon, data }) => {
             const container = document.createElement("div");
             const iconHolder = document.createElement("div");
             const info = document.createElement("p");
 
             container.className = `card__${label.toLowerCase()}`;
             iconHolder.className = `icon__${label.toLowerCase()}`;
-            info.textContent = `${label}: ${data ? data : "N/A"}`;
+            info.textContent = `${unit ? `${label}: ${data ? `${data} ${unit}` : "N/A"}` : `${label}: ${data ? `${data}` : "N/A"}`}`;
 
             iconHolder.append(icon);
 
@@ -87,8 +87,8 @@ export function createCard(mode = "", data = {}) {
         const feelsLikeHolder = document.createElement("p");
         const tempsHolder = document.createElement("div");
 
-        container.className = `card__${days[getDay(data.datetime)].toLowerCase()}`;
-        day.className = "card__day";
+        container.className = `card__day ${days[getDay(data.datetime)].toLowerCase()}`;
+        day.className = "day";
         iconHolder.className = "card__icon";
         avgTempHolder.className = "card__temp";
         feelsLikeHolder.className = "card__feelsLike";
@@ -96,8 +96,9 @@ export function createCard(mode = "", data = {}) {
 
         day.textContent = days[getDay(data.datetime)];
         iconHolder.innerHTML = svgLibrary[data.icon];
-        feelsLikeHolder.textContent = `Feels Like: ${data.feelslike} C`;
-        avgTempHolder.textContent = `Temp: ${data.temp}`;
+        iconHolder.firstChild.classList.add(data.icon);
+        feelsLikeHolder.textContent = `FL: ${data.feelslike} C`;
+        avgTempHolder.textContent = `T: ${data.temp} C`;
 
         tempsHolder.append(avgTempHolder, feelsLikeHolder);
 
